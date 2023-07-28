@@ -39,13 +39,37 @@ class _HomeScreenState extends State<HomeScreen> {
     );
     // TODO: implement buildthrow UnimplementedError();
   }
+
+
+
+  void onHeartPressed(){  // ➍ 하트 눌렀을때 실행할 함수
+    showCupertinoDialog(  // ➋ 쿠퍼티노 다이얼로그 실행
+      context: context,
+        builder: (BuildContext context) {
+          return Align(     // 정렬을 지정하는 위젯
+            alignment: Alignment.bottomCenter, // 아래 중간으로 정렬
+            child: Container(
+              color: Colors.white, // 배경색 흰색 지정
+              height: 300,
+              child: CupertinoDatePicker(
+                mode: CupertinoDatePickerMode.date,
+                // 날짜가 변경되면 실행되는 함수
+                // select onchanged
+                onDateTimeChanged: (DateTime date) {
+                  setState(() {
+                    firstDay = date;
+                  });
+
+                },
+              ),
+            ),
+          );
+        },
+      barrierDismissible: true, // 외부 탭할 겨우 다이얼로그 닫기
+    );
+
+  }
 }
-
-void onHeartPressed(){ //하트를 눌렀을 때 실행할 함수
-  // print('클릭');
-
-}
-
 
 class _DDay extends StatelessWidget {
   //하트 눌렀을 때 실행할 함수
